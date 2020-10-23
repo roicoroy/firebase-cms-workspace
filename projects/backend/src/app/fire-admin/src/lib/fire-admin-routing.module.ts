@@ -34,7 +34,7 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        canActivate: [LoginGuard]
+        // canActivate: [LoginGuard]
       },
       // Logout
       {
@@ -45,7 +45,7 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
-        canActivate: [RegisterGuard]
+        // canActivate: [RegisterGuard]
       },
       // Dashboard
       {

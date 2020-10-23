@@ -19,7 +19,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   error: string = null;
   private routeSubscription: Subscription = null;
 
-  constructor(private auth: AuthService, private route: ActivatedRoute, private navigation: NavigationService) { }
+  constructor(
+    private auth: AuthService,
+    private route: ActivatedRoute,
+    private navigation: NavigationService
+  ) { }
 
   ngOnInit() {
     this.routeSubscription = this.route.queryParams.subscribe((params: any) => {

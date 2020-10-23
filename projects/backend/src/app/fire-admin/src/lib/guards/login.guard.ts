@@ -7,7 +7,11 @@ import { ConfigService } from '../services/collections/config.service';
 @Injectable()
 export class LoginGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private navigation: NavigationService, private config: ConfigService) { }
+  constructor(
+    private auth: AuthService,
+    private navigation: NavigationService,
+    private config: ConfigService
+  ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
@@ -18,14 +22,14 @@ export class LoginGuard implements CanActivate {
         this.navigation.redirectTo('dashboard');
         resolve(false);
       } else {
-        const registrationEnabled = await this.config.isRegistrationEnabled();
-        //console.log(registrationEnabled);
-        if (!registrationEnabled) {
-          resolve(true);
-        } else {
+        // const registrationEnabled = await this.config.isRegistrationEnabled();
+        // //console.log(registrationEnabled);
+        // if (!registrationEnabled) {
+        //   resolve(true);
+        // } else {
           this.navigation.redirectTo('register');
           resolve(false);
-        }
+        // }
       }
     });
   }

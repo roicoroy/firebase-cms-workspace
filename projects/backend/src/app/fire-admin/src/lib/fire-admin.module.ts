@@ -145,9 +145,10 @@ registerLocaleData(localeAr);
     }
   ]
 })
+
 export class FireAdminModule {
 
-  static initialize(firebaseConfig: FirebaseOptions): ModuleWithProviders {
+  static initialize(firebaseConfig: FirebaseOptions): any {
     return {
       ngModule: FireAdminModule,
       providers: [

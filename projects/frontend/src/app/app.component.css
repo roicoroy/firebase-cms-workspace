@@ -1,0 +1,14 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css";
+
+ngx-masonry {
+    width: 30%;
+    /* columns: 4; */
+}
+/* .ngx-masonry-item {
+    background-color: blue;
+}
+
+img .ngx-masonry-image{
+    width: 100%;
+    background-color: green;
+} */

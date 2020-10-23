@@ -36,7 +36,7 @@ export class PostsEditComponent implements OnInit, AfterViewInit, OnDestroy {
   allStatus: object|any = {};
   private subscription: Subscription = new Subscription();
   private routeParamsChange: Subject<void> = new Subject<void>();
-
+  escapeUrl = 'https://github.com/AXeL-dev/FireAdmin/blob/master/screenshots/dashboard.png'
   constructor(
     private i18n: I18nService,
     private categories: CategoriesService,
@@ -67,6 +67,7 @@ export class PostsEditComponent implements OnInit, AfterViewInit, OnDestroy {
             if (post.image) {
               this.posts.getImageUrl(post.image as  string).pipe(take(1)).toPromise().then((imageUrl: string) => {
                 this.imageSrc = imageUrl;
+                // console.log(this.imageSrc);
               });
             }
             this.checkedCategories = post.categories ? post.categories : [];

@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "ion-firebasecms-client",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "../dist/ion-frontend/",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

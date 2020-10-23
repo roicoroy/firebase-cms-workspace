@@ -65,7 +65,7 @@
         <div class="card-body p-0" [class.d-none]="!imageCardHeader.isToggled">
           <span class="d-flex">
             <div class="edit-user-details__avatar rounded-0" (click)="postImage.click()">
-              <img [src]="imageSrc | escapeUrl" alt="Post image">
+              <img [src]="imageSrc" alt="Post image">
               <label class="edit-user-details__avatar__change rounded-0">
                 <i class="material-icons mr-1">add_a_photo</i>
                 <input type="file" accept="image/*" class="d-none" (change)="onImageChange($event)" #postImage>

@@ -1,0 +1,40 @@
+.pins {
+  column-count: 4;
+}
+ion-col {
+  // column-count: 4;
+}
+.pin {
+  display: inline-block;
+  margin-right: 0vw;
+}
+.masonry-item { width: 200px; }
+.card {
+  margin-top: 10px;
+}
+img {
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+}
+
+img:nth-child(odd) {
+  height: 300px;
+}
+
+// masonry-layout:not(:defined) {
+//   display: none;
+// }
+.post-description {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+// Media queries
+@media (min-width: 320px) {
+  .pins {
+    column-count: 2;
+  }
+}

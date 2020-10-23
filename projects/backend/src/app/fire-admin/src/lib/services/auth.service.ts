@@ -10,7 +10,10 @@ export class AuthService {
   firebaseUser: firebase.User = null;
   lastError: firebase.FirebaseError = null;
 
-  constructor(private afa: AngularFireAuth, private currentUser: CurrentUserService) {
+  constructor(
+    private afa: AngularFireAuth,
+    private currentUser: CurrentUserService
+  ) {
     this.afa.auth.onAuthStateChanged((user: firebase.User) => {
       // console.log(user);
       this.firebaseUser = user;

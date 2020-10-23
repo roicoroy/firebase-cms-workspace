@@ -20,14 +20,14 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   allUsers: Observable<User[]>;
   selectedUser: User = null;
-  @ViewChild(DataTableDirective, {static : false}) private dataTableElement: DataTableDirective;
-  dataTableOptions: DataTables.Settings|any = {
+  @ViewChild(DataTableDirective, { static: false }) private dataTableElement: DataTableDirective;
+  dataTableOptions: DataTables.Settings | any = {
     responsive: true,
     aaSorting: []
   };
   dataTableTrigger: Subject<void> = new Subject();
   private subscription: Subscription = new Subscription();
-  allRoles: object|any = {};
+  allRoles: object | any = {};
   private routeParamsChange: Subject<void> = new Subject<void>();
   isLoading: boolean = true;
 
@@ -43,6 +43,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // Get all roles
     this.allRoles = this.users.getAllRoles();
+    // console.log(this.allRoles);
     // Get route params
     this.subscription.add(
       this.route.params.subscribe((params: { role: string }) => {
@@ -50,8 +51,9 @@ export class UsersListComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         // Get all users
         this.allUsers = this.users.getAll().pipe(
-          skip(this.currentUser.data ? 1 : 0), // workaround to skip first emitted value when currentUser subscription is running
+          // skip(this.currentUser.data ? 1 : 0), // workaround to skip first emitted value when currentUser subscription is running
           map((users: User[]) => {
+            console.log(users);
             // Filter by role
             if (params.role) {
               users = users.filter((user: User) => user.role === params.role);

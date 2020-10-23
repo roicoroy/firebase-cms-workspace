@@ -9,7 +9,6 @@ export class FireAdminService {
   constructor(@Inject(FirebaseOptionsToken) private firebaseConfig) { }
 
   static getFirebaseConfig(self: FireAdminService) {
-    //console.log(self.firebaseConfig);
     return self.firebaseConfig;
   }
 

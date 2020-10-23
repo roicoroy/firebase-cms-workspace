@@ -15,7 +15,9 @@ export class FirebaseUserService {
 
   private app: firebase.app.App;
 
-  constructor(private fas: FireAdminService) {
+  constructor(
+    private fas: FireAdminService
+  ) {
     const config = FireAdminService.getFirebaseConfig(this.fas);
     // console.log(config);
     this.app = initializeApp(config, 'FirebaseUserApp');

@@ -20,9 +20,9 @@ export class FireAdminComponent implements OnInit, OnDestroy {
   }
 
   clearAlert() {
-    if (! this.alert.isPersistent) {
-      this.alert.clear();
-    }
+    // if (! this.alert.isPersistent) {
+    //   this.alert.clear();
+    // }
   }
 
 }

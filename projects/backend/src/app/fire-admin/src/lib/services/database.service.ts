@@ -11,7 +11,10 @@ export class DatabaseService {
 
   private _currentUser: CurrentUserService = null;
 
-  constructor(private db: AngularFirestore, private i18n: I18nService) { }
+  constructor(
+    private db: AngularFirestore, 
+    private i18n: I18nService
+    ) { }
 
   /**
    * Set current user service instance
@@ -92,10 +95,10 @@ export class DatabaseService {
         // console.log(changes);
         let docs = [];
         changes.forEach(({ payload: { doc } }) => {
-          // console.log(change);
+          // console.log(doc);
           docs.push({ id: doc.id, ...(doc.data() as object) });
         });
-        // console.log(docs);
+        // console.log('docs::::',docs);
         return docs;
       })
     );
