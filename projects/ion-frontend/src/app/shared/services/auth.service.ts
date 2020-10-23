@@ -16,6 +16,7 @@ export class AuthService {
     private afa: AngularFireAuth,
     private currentUser: CurrentUserService
   ) {
+    // console.log('auth:::::   ',this.afa.auth)l
     this.afa.auth.onAuthStateChanged((user: firebase.User) => {
       // console.log(user);
       this.firebaseUser = user;

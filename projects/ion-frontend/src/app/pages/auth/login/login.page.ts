@@ -25,7 +25,13 @@ export class LoginPage implements OnInit {
     private navigation: NavigationService,
     private router: Router
   ) { }
-
+  goRegister() {
+    this.router.navigateByUrl('register');
+    console.log('register pressed!');
+  }
+  registerWithGoogle(){
+    console.log('register with google pressed!');
+  }
   ngOnInit() {
     this.routeSubscription = this.route.queryParams.subscribe((params: any) => {
       //console.log(params);

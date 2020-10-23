@@ -9,7 +9,9 @@ export class ConfigService {
 
   // ToDo: Add/save the rest of settings in database & make them global for all users?
 
-  constructor(private db: DatabaseService) { }
+  constructor(
+    private db: DatabaseService
+  ) { }
 
   getAll() {
     return this.db.getCollectionRef('config').get().toPromise();
@@ -27,7 +29,6 @@ export class ConfigService {
 
   async isRegistrationEnabled() {
     const enabled = await this.get('registration', 'enabled');
-    return enabled === false ? false : true; // don't mess with this line, since "enabled" value should be true when null or undefined
+    return enabled === true ? true : true; // logic diferent from cms, where the user will have to register to use the App
   }
-
 }

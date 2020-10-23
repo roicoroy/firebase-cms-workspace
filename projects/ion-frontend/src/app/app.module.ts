@@ -13,8 +13,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FirebaseOptions, FirebaseOptionsToken } from 'angularfire2';
-import { IonFireAdminService } from './fire-admin.service';
-import { NgxMasonryModule } from './shared/ngx-masonry/src/public-api';
+// import { IonFireAdminService } from './fire-admin.service';
+// import { NgxMasonryModule } from './shared/ngx-masonry/src/public-api';
 
 
 @NgModule({
@@ -30,31 +30,12 @@ import { NgxMasonryModule } from './shared/ngx-masonry/src/public-api';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    NgxMasonryModule
+    // NgxMasonryModule
   ],
   providers: [
-    // IonFireAdminService,
-    // {
-    //   provide: FirebaseOptionsToken,
-    //   useFactory: IonFireAdminService.getFirebaseConfig,
-    //   deps: [IonFireAdminService]
-    // },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  // static initialize(firebaseConfig: FirebaseOptions): any {
-  //   return {
-  //     ngModule: AppModule,
-  //     providers: [
-  //       IonFireAdminService,
-  //       {
-  //         provide: FirebaseOptionsToken,
-  //         useValue: firebaseConfig
-  //       }
-  //     ]
-  //   };
-  // }
-}
+export class AppModule { }
 

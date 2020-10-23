@@ -22,19 +22,19 @@ export class LoginGuard implements CanActivate {
       if (isSignedIn) {
         // const rootPath = state.url.slice(0, state.url.indexOf(route.url[route.url.length - 1].path));
         // this.navigation.setRootPath(rootPath);
-        // this.navigation.redirectTo('dashboard');
-        this.router.navigateByUrl('home');
+        this.navigation.redirectTo('home');
+        // this.router.navigateByUrl('home');
         resolve(false);
       } else {
-        // const registrationEnabled = await this.config.isRegistrationEnabled();
-        // //console.log(registrationEnabled);
-        // if (!registrationEnabled) {
-        //   resolve(true);
-        // } else {
+        const registrationEnabled = await this.config.isRegistrationEnabled();
+        //console.log(registrationEnabled);
+        if (!registrationEnabled) {
+          resolve(true);
+        } else {
         // this.navigation.redirectTo('register');
         this.router.navigateByUrl('register');
         resolve(false);
-        // }
+        }
       }
     });
   }

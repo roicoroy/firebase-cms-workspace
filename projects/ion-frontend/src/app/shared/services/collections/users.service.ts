@@ -76,9 +76,11 @@ export class UsersService {
       updatedBy: null
     };
     return new Promise((resolve, reject) => {
-      this.firebaseUser.register(user).then(() => {
+      this.firebaseUser.register(user).then((response) => {
         resolve();
+        console.log(response);
       }).catch((error: Error) => {
+        console.log(error);
         reject(error);
       });
     });

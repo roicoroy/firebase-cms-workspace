@@ -17,15 +17,15 @@ export class RegisterGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      // const registrationEnabled = await this.config.isRegistrationEnabled();
-      // //console.log(registrationEnabled);
-      // if (registrationEnabled) {
-      //   resolve(true);
-      // } else {
-        // this.navigation.redirectTo('login');
-        this.router.navigateByUrl('login');
+      const registrationEnabled = await this.config.isRegistrationEnabled();
+      //console.log(registrationEnabled);
+      if (registrationEnabled) {
+        resolve(true);
+      } else {
+        // this.router.navigateByUrl('login');
+        this.navigation.redirectTo('login');
         resolve(false);
-      // }
+      }
     });
   }
 
