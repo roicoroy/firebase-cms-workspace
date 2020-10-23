@@ -5,7 +5,7 @@ import { CurrentUserService } from './services/current-user.service';
 @Component({
   selector: 'fa-root',
   template: `<router-outlet (deactivate)="clearAlert()"></router-outlet>`,
-  styleUrls: ['./fire-admin.component.css'],
+  styleUrls: ['./fire-admin.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class FireAdminComponent implements OnInit, OnDestroy {

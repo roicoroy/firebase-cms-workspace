@@ -1,6 +1,6 @@
 import { style, animate } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgxMasonryOptions, NgxMasonryComponent } from 'ngx-masonry';
+import { NgxMasonryOptions, NgxMasonryComponent, NgxMasonryAnimations } from 'ngx-masonry';
 
 @Component({
   selector: 'app-root',
@@ -11,32 +11,27 @@ export class AppComponent implements OnInit {
   title = 'frontend';
 
   public masonryOptions: NgxMasonryOptions = {
-    gutter: 0,
-    // columnWidth: 150,
-    // animations: {
-    //   show: [
-    //     style({ opacity: 0 }),
-    //     animate('400ms ease-in', style({ opacity: 1 })),
-    //   ],
-    //   hide: [
-    //     style({ opacity: '*' }),
-    //     animate('400ms ease-in', style({ opacity: 0 })),
-    //   ]
-    // },
-
-    // itemSelector: string,
-
-    // percentPosition: true,
-    // stamp: string,
-    // fitWidth: true,
-    // * originLeft: boolean;
-    // * originTop: boolean;
-    // * containerStyle: string;
-    // * resize: boolean;
-    // * initLayout: boolean;
-    // * horizontalOrder: boolean;
-    // * animations: NgxMasonryAnimations;
-
+    itemSelector: '.grid-item',
+    columnWidth: 60,
+    gutter: 20,
+    animations: {
+      show: [
+        style({ opacity: 0 }),
+        animate('400ms ease-out', style({ opacity: 1 })),
+      ],
+      hide: [
+        style({ opacity: '*' }),
+        animate('400ms ease-in', style({ opacity: 0 })),
+      ]
+    },
+    stamp: '.stamp',
+    fitWidth: false,
+    originLeft: false,
+    originTop: false,
+    containerStyle: { position: 'relative', display:'flex' },
+    resize: true,
+    initLayout: true,
+    horizontalOrder: true,
   };
 
   @ViewChild(NgxMasonryComponent) masonry: NgxMasonryComponent;

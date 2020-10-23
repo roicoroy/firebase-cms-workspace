@@ -1,14 +1,60 @@
-<!-- <div class="container-fluid">
-  <div class="row"> -->
-    <h1>Ngx Masonry Demo</h1>
+<div class="container">
+  <div class="row">
 
-    <ngx-masonry [options]="masonryOptions" [ordered]="true" (itemsLoaded)="itemsLoaded()">
-      <div class='container-fluid ngx-masonry-item' ngxMasonryItem [prepend]="image[0]"
+    <h1>Ngx Masonry</h1>
+
+    <ngx-masonry [options]="masonryOptions" [ordered]="true">
+      
+      <!-- <div ngxMasonryItem class='ngx-masonry-item'  [prepend]="image[0]"
         *ngFor="let image of masonryImages;index as idx">
         <div> {{idx}} </div>
         <img class='ngx-masonry-image' is='img' [src]="image[1]">
+      </div> -->
+
+      <div class="container">
+        <div class="stamp stamp1"></div>
+        <div class="stamp stamp2"></div>
+        <div class="grid-item" ngxMasonryItem [prepend]="image[0]" *ngFor="let image of masonryImages;index as idx">
+          <div> {{idx}} </div>
+          <img [src]="image[1]" width="100%">
+        </div>
       </div>
+
+      <!-- <div class="grid">
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--width2 grid-item--height2"></div>
+        <div class="grid-item grid-item--height3"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item grid-item--width3"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item grid-item--width2 grid-item--height3"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--width2 grid-item--height2"></div>
+        <div class="grid-item grid-item--width2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height3"></div>
+        <div class="grid-item grid-item--height2"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item grid-item--height2"></div>
+      </div> -->
+
     </ngx-masonry>
 
-  <!-- </div>
-</div> -->
+
+    <!-- <ngx-masonry [options]="masonryOptions" style="width: 90vw;" [ordered]="true" (itemsLoaded)="itemsLoaded()">
+      <div ngxMasonryItem [prepend]="image[0]" *ngFor="let image of masonryImages;index as idx" style="width: 30%;">
+        <div> {{idx}} </div>
+        <img [src]="image[1]" width="100%">
+      </div>
+    </ngx-masonry> -->
+
+  </div>
+</div>

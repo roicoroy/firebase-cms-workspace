@@ -5,10 +5,17 @@
   "projects": {
     "backend": {
       "projectType": "application",
-      "schematics": {},
       "root": "projects/backend",
       "sourceRoot": "projects/backend/src",
       "prefix": "app",
+      "schematics": {
+        "@ionic/angular-toolkit:component": {
+          "styleext": "scss"
+        },
+        "@ionic/angular-toolkit:page": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

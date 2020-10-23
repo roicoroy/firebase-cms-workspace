@@ -161,21 +161,9 @@ export class HomePage implements OnInit, OnDestroy {
     private settings: SettingsService
   ) { }
 
-  w: any = 1;
-  h = 1;
-  html = '';
-  limitItem = 49;
   ngOnInit() {
 
     this.masonryImages = this.dummyPictures.slice(0, this.limit);
-
-
-
-    // $('#grid').masonry({
-    //   // options...
-    //   itemSelector: '.grid-item',
-    //   columnWidth: 200
-    // });
 
     // Get all status
     this.allStatus = this.posts.getAllStatusWithColors();
