@@ -13,8 +13,8 @@ import { NavigationService } from 'src/app/shared/services/navigation.service';
 export class LoginPage implements OnInit {
 
   logo: string = getLogo();
-  email: string = 'roicoroy@yahoo.com.br';
-  password: string = 'Rwbento123';
+  email: string = '';
+  password: string = '';
   rememberMe: boolean = false;
   error: string = null;
   private routeSubscription: Subscription = null;

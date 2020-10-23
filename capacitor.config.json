@@ -3,7 +3,7 @@
   "appName": "ion-firebasecms-client",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "./dist/ion-frontend/",
+  "webDir": "np./dist/ion-frontend/",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0

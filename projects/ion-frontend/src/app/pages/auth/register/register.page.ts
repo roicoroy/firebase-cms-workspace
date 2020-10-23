@@ -13,20 +13,21 @@ import { NavigationService } from 'src/app/shared/services/navigation.service';
 export class RegisterPage implements OnInit {
 
   logo: string = getLogo();
-  email: string = 'test2@example.com';
-  password: string = 'Summer2020';
-  passwordConfirmation: string = 'Summer2020';
+  email: string = '';
+  password: string = '';
+  passwordConfirmation: string = '';
   error: string = null;
 
   constructor(
     public navigation: NavigationService,
     private users: UsersService,
-    private router: Router
   ) { }
 
   ngOnInit() {
   }
-
+navigate(){
+  return this.navigation.getRouterLink('login'); 
+}
   onSubmit(event: Event, submitButton: HTMLButtonElement | any) {
     const form = event.target as any;
     form.isSubmitted = true;
@@ -40,7 +41,6 @@ export class RegisterPage implements OnInit {
         submitButton.isLoading = false;
       };
       startLoading();
-      // Register admin
       this.users.register({
         firstName: 'App',
         lastName: 'User',
@@ -49,15 +49,10 @@ export class RegisterPage implements OnInit {
         role: UserRole.Guest,
         birthDate: null,
         bio: null
-      }).then((response) => {
-        console.log(response);
-        // console.log(`login?email=${this.email}&password=${this.password}`);
+      }).then(() => {
         this.navigation.redirectTo(`login?email=${this.email}&password=${this.password}`);
-        // this.router.navigate(`login?email=${this.email}&password=${this.password}`);
-
       }).catch((error: Error) => {
-        // this.error = error.message;
-        console.log(this.error)
+        console.error(error);
       }).finally(() => {
         stopLoading();
       });

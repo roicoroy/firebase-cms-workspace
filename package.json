@@ -8,6 +8,8 @@
     "start-backend": "ng serve backend",
     "ionic-serve": "ionic serve --project ion-frontend",
     "ionic-build-prod": "ionic build --prod --project ion-frontend",
+    "npx-cap-copy":"npx cap copy",
+    "npx-cap-open-android":"npx cap open android",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
