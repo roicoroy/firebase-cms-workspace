@@ -161,7 +161,7 @@ const routes: Routes = [
           {
             path: 'profile/:id',
             component: UsersProfileComponent,
-            canActivate: [UserGuard]
+            // canActivate: [UserGuard]
           },
           {
             path: '**',

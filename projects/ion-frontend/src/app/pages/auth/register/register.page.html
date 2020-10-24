@@ -1,47 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <ion-grid>
-    <ion-row>
+    <ion-row class='ion-text-center'>
       <ion-col size="12">
         <img [src]="logo" alt="Logo Admin">
-        <h5>Welcome To my Firebase App</h5>
-        <form (ngSubmit)="onSubmit($event, submitButton)" #registerForm>
+        <h5>Register page</h5>
+        <form (ngSubmit)="onSubmit($event)" #registerForm>
           <ion-list>
             <ion-item>
-              <ion-label for="inputEmail">Email Address</ion-label>
-              <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="emailHelp"
-                placeholder="{{ 'EnterEmail' }}" [(ngModel)]="email"
-                [class.is-invalid]="registerForm.isSubmitted && !emailInput.checkValidity()" required #emailInput>
+              <ion-label position="floating" for="inputEmail">Email Address</ion-label>
+              <ion-input type="email" name="inputEmail" placeholder="Enter your email" [(ngModel)]="email" required>
+              </ion-input>
             </ion-item>
           </ion-list>
           <ion-list>
             <ion-item>
-              <ion-label for="inputPassword">Password</ion-label>
-              <input type="password" class="form-control" id="inputPassword" name="inputPassword"
-                placeholder="Password" [(ngModel)]="password"
-                [class.is-invalid]="registerForm.isSubmitted && (!passwordInput.checkValidity() || password !== passwordConfirmation)"
-                required #passwordInput>
+              <ion-label position="floating" for="inputPassword">Password</ion-label>
+              <ion-input type="password" name="inputPassword" placeholder="Password" [(ngModel)]="password" required>
+              </ion-input>
             </ion-item>
           </ion-list>
           <ion-list>
             <ion-item>
-              <ion-label for="inputPasswordConfirmation">{{ 'Repeat password' }}</ion-label>
-              <input type="password" class="form-control" id="inputPasswordConfirmation"
-                name="inputPasswordConfirmation" placeholder="RepeatPassword" [(ngModel)]="passwordConfirmation"
-                [class.is-invalid]="registerForm.isSubmitted && (!passwordConfirmationInput.checkValidity() || password !== passwordConfirmation)"
-                required #passwordConfirmationInput>
+              <ion-label position="floating" for="inputPasswordConfirmation">Repeat password</ion-label>
+              <ion-input type="password" name="inputPasswordConfirmation" placeholder="Repeat Password"
+                [(ngModel)]="passwordConfirmation" required></ion-input>
             </ion-item>
           </ion-list>
-          <ion-button [disabled]="submitButton.isDisabled" #submitButton type="submit">
-            <ion-text color="dark">
-              Login
+          <ion-button type="submit">
+            <ion-text color="light">
+              Register
             </ion-text>
-            <i *ngIf="submitButton.isLoading" class="fas fa-circle-notch fa-spin ml-1"></i>
           </ion-button>
         </form>
       </ion-col>
@@ -53,14 +41,3 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-
-<!-- <div class="col-lg-3 col-md-5 auth-form mx-auto my-auto">
-  <div *ngIf="error?.length" class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismissError($event)">
-      <span aria-hidden="true">×</span>
-    </button>
-    <i class="fa fa-exclamation mx-2"></i>
-    {{ error }}
-  </div>  
-</div> -->

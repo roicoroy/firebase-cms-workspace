@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/collections/user.model';
-// import { I18nService } from './i18n.service';
 import { CurrentUserService } from './current-user.service';
 
 @Injectable({
@@ -14,8 +13,7 @@ export class DatabaseService {
   private _currentUser: CurrentUserService = null;
 
   constructor(
-    private db: AngularFirestore, 
-    // private i18n: I18nService
+    private db: AngularFirestore
     ) { }
 
   /**

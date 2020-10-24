@@ -34,7 +34,7 @@ export class UserGuard implements CanActivate {
         // Redirect to dashboard on any other attempts
         else {
           // this.navigation.redirectTo('dashboard');
-          this.router.navigateByUrl('home');
+          this.router.navigateByUrl('tabs/home');
           resolve(false);
         }
       }

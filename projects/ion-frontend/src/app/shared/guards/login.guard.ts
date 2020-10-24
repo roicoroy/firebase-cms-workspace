@@ -22,7 +22,7 @@ export class LoginGuard implements CanActivate {
       if (isSignedIn) {
         // const rootPath = state.url.slice(0, state.url.indexOf(route.url[route.url.length - 1].path));
         // this.navigation.setRootPath(rootPath);
-        this.navigation.redirectTo('home');
+        this.navigation.redirectTo('tabs/home');
         // this.router.navigateByUrl('home');
         resolve(false);
       } else {

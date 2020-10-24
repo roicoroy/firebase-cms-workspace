@@ -6,7 +6,7 @@ import { StorageService } from '../storage.service';
 import { map, take, mergeMap } from 'rxjs/operators';
 import { of, merge, Observable } from 'rxjs';
 import { getEmptyImage, getLoadingImage } from '../../helpers/assets.helper';
-import { SettingsService } from '../settings.service';
+// import { SettingsService } from '../settings.service';
 import { Language } from '../../models/language.model';
 import { UsersService } from './users.service';
 import { QueryFn } from '@angular/fire/firestore';
@@ -28,7 +28,7 @@ export class PostsService extends DocumentTranslationsService {
   constructor(
     protected db: DatabaseService,
     private storage: StorageService,
-    private settings: SettingsService,
+    // private settings: SettingsService,
     private users: UsersService
   ) {
     super(db, 'postTranslations');
@@ -121,10 +121,10 @@ export class PostsService extends DocumentTranslationsService {
     }));
   }
 
-  getTranslationLanguages(post: Post) {
-    const postLanguages = Object.keys(post.translations);
-    return this.settings.getActiveSupportedLanguages().filter((lang: Language) => postLanguages.indexOf(lang.key) === -1);
-  }
+  // getTranslationLanguages(post: Post) {
+  //   const postLanguages = Object.keys(post.translations);
+  //   return this.settings.getActiveSupportedLanguages().filter((lang: Language) => postLanguages.indexOf(lang.key) === -1);
+  // }
 
   getImageUrl(imagePath: string) {
     if (this.imagesCache[imagePath]) {
@@ -139,7 +139,7 @@ export class PostsService extends DocumentTranslationsService {
 
   private pipePosts(postsObservable: Observable<Post[]>) {
     return postsObservable.pipe(mergeMap(async (posts: Post[]) => {
-      const activeSupportedLanguages = this.settings.getActiveSupportedLanguages().map((lang: Language) => lang.key);
+      // const activeSupportedLanguages = this.settings.getActiveSupportedLanguages().map((lang: Language) => lang.key);
       //posts.forEach((post: Post) => { // forEach loop doesn't seems to work well with async/await
       for (let post of posts) {
         // console.log(post);
@@ -151,7 +151,7 @@ export class PostsService extends DocumentTranslationsService {
           url: post.image ? merge(of(getLoadingImage()), this.getImageUrl(post.image as string)) : of(getEmptyImage())
         };
         post.author = post.createdBy ? this.users.getFullName(post.createdBy) : of(null);
-        post.isTranslatable = !activeSupportedLanguages.every((lang: string) => postLanguages.includes(lang));
+        // post.isTranslatable = !activeSupportedLanguages.every((lang: string) => postLanguages.includes(lang));
       }
       //});
       return posts;

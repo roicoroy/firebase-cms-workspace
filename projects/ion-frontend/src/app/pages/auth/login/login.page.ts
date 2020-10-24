@@ -25,16 +25,9 @@ export class LoginPage implements OnInit {
     private navigation: NavigationService,
     private router: Router
   ) { }
-  goRegister() {
-    this.router.navigateByUrl('register');
-    console.log('register pressed!');
-  }
-  registerWithGoogle(){
-    console.log('register with google pressed!');
-  }
+
   ngOnInit() {
     this.routeSubscription = this.route.queryParams.subscribe((params: any) => {
-      //console.log(params);
       if (params.email) {
         this.email = params.email;
       }
@@ -43,25 +36,20 @@ export class LoginPage implements OnInit {
       }
     });
   }
-
   ngOnDestroy() {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
   }
-
   onSubmit() {
     this.auth.signIn(this.email, this.password, this.rememberMe).then(() => {
-      // this.navigation.redirectTo('');
-      this.router.navigateByUrl('home')
+      this.navigation.redirectTo('tabs/home');
     }).catch((error: Error) => {
       this.error = error.message;
     });
   }
-
-  dismissError(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.error = null;
+  goRegister() {
+    this.router.navigateByUrl('register');
+    console.log('register pressed!');
   }
 }

@@ -109,10 +109,12 @@ export class UsersService {
   }
 
   get(id: string) {
-    return this.db.getDocument('users', id).pipe(map((user: User) => {
-      user.id = id;
-      return user;
-    }));
+    return this.db.getDocument('users', id)
+    .pipe(map((user: any) => {
+        user.id = id;
+        console.log(user);
+        return user;
+      }));
   }
 
   getFullName(id: string) {
@@ -200,7 +202,7 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.updateEmail(oldData.email, oldData.password, data.email).then(() => {
         this.updatePassword(data.email, oldData.password, data.password).then(() => {
-          this.uploadImageAfter(this.db.setDocument('users', id, user), user, {...data, id: id}).then(() => {
+          this.uploadImageAfter(this.db.setDocument('users', id, user), user, { ...data, id: id }).then(() => {
             resolve();
           }).catch((error: Error) => {
             reject(error);

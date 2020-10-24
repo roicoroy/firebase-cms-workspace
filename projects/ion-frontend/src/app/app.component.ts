@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
+const { SplashScreen } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,12 @@ export class AppComponent {
   ) {
     this.initializeApp();
   }
-
   initializeApp() {
     this.platform.ready().then(() => {
-
+      SplashScreen.show({
+        showDuration: 2000,
+        autoHide: true
+      });
     });
   }
 }

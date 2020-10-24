@@ -11,7 +11,7 @@ import { CategoriesService } from 'src/app/shared/services/collections/categorie
 import { PostsService } from 'src/app/shared/services/collections/posts.service';
 import { CurrentUserService } from 'src/app/shared/services/current-user.service';
 import { NavigationService } from 'src/app/shared/services/navigation.service';
-import { SettingsService } from 'src/app/shared/services/settings.service';
+// import { SettingsService } from 'src/app/shared/services/settings.service';
 
 declare var $: any;
 @Component({
@@ -40,7 +40,7 @@ export class HomePage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public navigation: NavigationService,
     public currentUser: CurrentUserService,
-    private settings: SettingsService
+    // private settings: SettingsService
   ) { }
 
   ngOnInit() {
@@ -60,9 +60,9 @@ export class HomePage implements OnInit, OnDestroy {
       })
     );
     // Get all languages
-    this.settings.supportedLanguages.forEach((language: Language) => {
-      this.allLanguages[language.key] = language;
-    });
+    // this.settings.supportedLanguages.forEach((language: Language) => {
+    //   this.allLanguages[language.key] = language;
+    // });
     // Get route params
     this.subscription.add(
       this.route.params.subscribe((params: { status: string, categoryId: string, authorId: string }) => {

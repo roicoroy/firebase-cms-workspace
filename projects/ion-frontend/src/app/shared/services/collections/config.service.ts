@@ -28,7 +28,8 @@ export class ConfigService {
   }
 
   async isRegistrationEnabled() {
-    const enabled = await this.get('registration', 'enabled');
-    return enabled === true ? true : true; // logic diferent from cms, where the user will have to register to use the App
+    return true;
+    // const enabled = await this.get('registration', 'enabled');
+    // return enabled === false ? false : true; // logic diferent from cms, where the user will have to register to use the App
   }
 }

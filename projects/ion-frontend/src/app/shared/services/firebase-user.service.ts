@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { auth, initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-// import { IonFireAdminService } from '../../fire-admin.service';
 import { User } from '../models/collections/user.model';
 
 /**
@@ -18,12 +17,8 @@ export class FirebaseUserService {
 
   private app: firebase.app.App;
 
-  constructor(
-    // private fas: IonFireAdminService
-  ) {
-    // const config = IonFireAdminService.getFirebaseConfig(this.fas);
-    // // console.log(config);
-    this.app = initializeApp(environment.firebase, 'IonFirebaseUserApp');
+  constructor() {
+    this.app = initializeApp(environment.firebase, 'ion-frontend-app');
   }
 
   create(email: string, password: string): Promise<string> {
