@@ -112,7 +112,7 @@ export class UsersService {
     });
   }
 
-  get(id: string) {
+  get(id: any) {
     return this.db.getDocument('users', id).pipe(map((user: User) => {
       user.id = id;
       return user;

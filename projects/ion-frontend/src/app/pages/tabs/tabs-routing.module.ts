@@ -40,12 +40,12 @@ const routes: Routes = [
       },
       {
 
-        path: 'edit/:id',
+        path: 'edit',
         children: [
           {
             path: '',
             loadChildren: () => import('../profile/edit/edit.module').then(m => m.EditPageModule),
-            canActivate: [AuthGuard]
+            // canActivate: [AuthGuard]
           }
         ]
       },

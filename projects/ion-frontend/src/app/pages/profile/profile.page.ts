@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { User } from 'firebase';
 import { Observable, Subscription, Subject } from 'rxjs';
@@ -21,7 +21,7 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit, OnDestroy {
-  
+
   user: any;
   allRoles: object = {};
   latestPosts: Observable<any[]>;
@@ -43,19 +43,23 @@ export class ProfilePage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private pages: PagesService,
     private currentUser: CurrentUserService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private router: Router
   ) { }
-  navigateToEdit() {
-    // this.openEditModal().then(() => {
-    //   return this.navigation.getRouterLink('users', 'edit', this.user?.id || '');
-    // });
+  navigateToEdit(userId) {
+    this.router.navigate(['tabs/edit'], {
+      queryParams: {
+        "userId":userId,
+      }
+    })
+    console.log('nagigate to edit', this.user?.id)
   }
-  async openEditModal(users, edit) {
+  async openEditModal(userId) {
+    console.log(userId);
     const modal = await this.modalController.create({
       component: EditModalComponent,
-      cssClass: 'my-custom-class',
-      componentProps:{
-        'userId': this.user?.id || '',
+      componentProps: {
+        'userId': userId,
       }
     });
     return await modal.present();
@@ -78,29 +82,28 @@ export class ProfilePage implements OnInit, OnDestroy {
     );
     // Get user data
     this.userID = this.currentUser.data?.id;
-    console.log(this.userID);
     this.subscription.add(
       this.users.get(this.userID).pipe(
         map((user: any) => {
           user.avatar = this.users.getAvatarUrl(user.avatar as string);
-          console.log(user.avatar);
+          // console.log(user.avatar);
           return user;
         }),
         takeUntil(this.routeParamsChange)
-      )
-        .subscribe((user: User) => {
-          if (user) {
-            this.user = user;
-            this.user.id = this.userID;
-            // Get statistics
-            // this.getStatistics();
-            // // Get latest posts
-            // this.getLatestPosts();
-          }
-          else {
-            this.navigation.redirectTo('users', 'list');
-          }
-        }));
+      ).subscribe((user: User) => {
+        if (user) {
+          this.user = user;
+          this.user.id = this.userID;
+          // Get statistics
+          // this.getStatistics();
+          // // Get latest posts
+          // this.getLatestPosts();
+        }
+        else {
+          this.navigation.redirectTo('users', 'list');
+        }
+      })
+    );
   }
   ngOnInit() {
   }

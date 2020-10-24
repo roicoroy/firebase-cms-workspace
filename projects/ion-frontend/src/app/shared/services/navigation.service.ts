@@ -11,7 +11,7 @@ export class NavigationService {
   constructor(
     public router: Router
   ) {
-    console.log(this.router.config[0].path);
+    // console.log(this.router.config[1].path);
     this.rootPath = this.router.config[1].path;
   }
 
@@ -28,13 +28,17 @@ export class NavigationService {
   }
 
   redirectTo(...path: any[]) {
-    console.log(path, this.getQueryParams(path[0]));
+    // console.log(path, this.getQueryParams(path[0]));
     this.router.navigate(this.getRouterLink(...path), { queryParams: this.getQueryParams(path[0]) });
   }
 
   getRouterLink(...path: any[]) {
     // const root = this.rootPath ? '/' + this.rootPath : [];
-    path = path.map((segment: string) => segment.split('?')[0]); // clean up / remove query params
+    path = path.map((segment: string) => {
+      console.log('segment::::  ', segment);
+      segment.split('?')[0];
+    }); // clean up / remove query params
+    console.log('path::::  ', path);
     return path;
   }
 

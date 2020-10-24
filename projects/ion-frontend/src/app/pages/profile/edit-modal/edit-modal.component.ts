@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 // import { User } from 'firebase';
@@ -15,6 +15,8 @@ import { NavigationService } from 'src/app/shared/services/navigation.service';
   styleUrls: ['./edit-modal.component.scss'],
 })
 export class EditModalComponent implements OnInit {
+
+  @Input() userId: string;
 
   id: string;
   firstName: string;
@@ -41,16 +43,16 @@ export class EditModalComponent implements OnInit {
     this.allRoles = this.users.getAllRoles();
     this.subscription.add(
       this.route.params
-        .subscribe((params: { id: string }) => {
-          console.log(params); 
-          this.users.get(params.id)
+        .subscribe((params: { userId: string }) => {
+          console.log(params);
+          this.users.get(params.userId)
             .pipe(take(1))
             .toPromise()
             .then((user: any) => {
               console.log(user);
               if (user) {
                 this.userData = user;
-                this.id = params.id;
+                this.id = params.userId;
                 this.firstName = user.firstName;
                 this.lastName = user.lastName;
                 this.email = user.email;
@@ -65,7 +67,7 @@ export class EditModalComponent implements OnInit {
                       this.avatarSrc = imageUrl;
                     })
                 );
-              } 
+              }
               else {
                 this.navigation.redirectTo('users', 'list');
               }

@@ -10,15 +10,12 @@
           <p class="text-center text-light m-0 mb-2">{{ (allRoles[user?.role] || '') }}</p>
           <ul class="user-details__social user-details__social--primary d-table mx-auto mb-4">
             <li class="mx-1" *ngIf="canEditProfile()">
-              
-              <a [routerLink]="navigation.getRouterLink('users', 'edit', user?.id || '')" title="Edit User">
+              <a [routerLink]="( user?.id)">
                 <i class="far fa-edit"></i>
               </a>
-
-              <!-- <ion-text (click)="openEditModal('users', 'edit')" color="primary">
-                <i class="far fa-edit"></i>
-                Edit Modal
-              </ion-text> -->
+              <ion-button (click)="navigateToEdit(user?.id)" expand="block" fill="clear" shape="round">
+                Open Edit Pagee
+              </ion-button>
             </li>
           </ul>
           <div>
@@ -27,17 +24,13 @@
                 <span>{{ 'FirstName' }}</span>
                 <span>{{ user?.firstName || '' }}</span>
               </div>
-              <div
-              
-              >
+              <div>
                 <span>{{ 'LastName' }}</span>
                 <span>{{ user?.lastName || '' }}</span>
               </div>
             </div>
             <div class="row">
-              <div
-              
-              >
+              <div>
                 <span>{{ 'Email' }}</span>
                 <span>{{ user?.email || '' }}</span>
               </div>
