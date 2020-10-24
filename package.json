@@ -7,7 +7,7 @@
     "start-frontend": "ng serve --project frontend",
     "start-backend": "ng serve backend",
     "ion-g-c": "ionic g component  --project ion-frontend shared/components/tabs",
-    "ion-g-p":"ionic g page --project ion-frontend pages/profile/edit-modal",
+    "ion-g-p":"ionic g page --project ion-frontend pages/test",
     "ionic-serve": "ionic serve --project ion-frontend",
     "ionic-build-prod": "ionic build --prod --project ion-frontend",
     "npx-cap-copy":"npx cap copy",
