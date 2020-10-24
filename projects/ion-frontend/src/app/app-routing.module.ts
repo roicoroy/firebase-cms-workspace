@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './shared/guards/auth.guard';
-import { LoginGuard } from './shared/guards/login.guard';
-import { RegisterGuard } from './shared/guards/register.guard';
+// import { AuthGuard } from './shared/guards/auth.guard';
+// import { LoginGuard } from './shared/guards/login.guard';
+// import { RegisterGuard } from './shared/guards/register.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -21,24 +21,24 @@ const routes: Routes = [
     // canActivate: [RegisterGuard]
   },
   {
-    path: 'edit',
-    loadChildren: () => import('./pages/profile/edit/edit.module').then(m => m.EditPageModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
     // canActivate: [AuthGuard]
   },
-  {
-    path: 'media',
-    loadChildren: () => import('./pages/media/media.module').then(m => m.MediaPageModule),
-    // canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
-    // canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'media',
+  //   loadChildren: () => import('./pages/media/media.module').then(m => m.MediaPageModule),
+  //   // canActivate: [AuthGuard]
+  // },
+  // {
+  //   path: 'profile',
+  //   loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
+  //   // canActivate: [AuthGuard]
+  // },
+  // {
+  //   path: 'edit',
+  //   loadChildren: () => import('./pages/profile/edit/edit.module').then(m => m.EditPageModule)
+  // },
 ];
 
 @NgModule({

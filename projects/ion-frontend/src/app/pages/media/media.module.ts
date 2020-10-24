@@ -3,11 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
 import { MediaPageRoutingModule } from './media-routing.module';
-
 import { MediaPage } from './media.page';
-import { CustomComponentsModule } from 'src/app/shared/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +12,6 @@ import { CustomComponentsModule } from 'src/app/shared/components/components.mod
     FormsModule,
     IonicModule,
     MediaPageRoutingModule,
-    CustomComponentsModule
   ],
   declarations: [
     MediaPage,
@@ -25,3 +21,4 @@ import { CustomComponentsModule } from 'src/app/shared/components/components.mod
   ]
 })
 export class MediaPageModule {}
+
