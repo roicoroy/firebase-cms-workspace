@@ -14,10 +14,8 @@ import { NavigationService } from 'src/app/shared/services/navigation.service';
   styleUrls: ['./edit.page.scss'],
 })
 export class EditPage implements OnInit {
-
   userId: string;
-
-  id: string;
+  id: any;
   firstName: string;
   lastName: string;
   email: string;
@@ -32,32 +30,20 @@ export class EditPage implements OnInit {
   userData: any;
 
   constructor(
-    private modalController: ModalController,
     private users: UsersService,
-    private alert: AlertService,
-    private route: ActivatedRoute,
     public navigation: NavigationService,
-    // private router:Router,
     public activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-    // this.activatedRoute.queryParams.subscribe((res: any) => {
-    //   console.log(res);
-    //   this.userId = res;
-    // });
-  }
+  ) { }
   ngOnInit() {
     this.allRoles = this.users.getAllRoles();
     this.subscription.add(
       this.activatedRoute.queryParams
-        .subscribe((params:any) => {
-
-          console.log(params.userId);
+        .subscribe((params: any) => {
           this.users.get(params.userId)
             .pipe(take(1))
             .toPromise()
             .then((user: any) => {
-              console.log(user);
               if (user) {
                 this.userData = user;
                 this.id = params;
@@ -77,7 +63,7 @@ export class EditPage implements OnInit {
                 );
               }
               else {
-                this.navigation.redirectTo('users', 'list');
+                console.error('else...')
               }
             });
         })
@@ -86,58 +72,42 @@ export class EditPage implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  // onAvatarChange(event: Event) {
-  //   this.avatar = (event.target as HTMLInputElement).files[0];
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     this.avatarSrc = reader.result;
-  //   };
-  //   reader.readAsDataURL(this.avatar);
-  // }
-  // updateUser(event: Event, form: HTMLFormElement) {
-  //   form.isSubmitted = true;
-  //   if (form.checkValidity()) {
-  //     const target = event.target as any;
-  //     const startLoading = () => {
-  //       target.isDisabled = true;
-  //       target.isLoading = true;
-  //     };
-  //     const stopLoading = () => {
-  //       target.isDisabled = false;
-  //       target.isLoading = false;
-  //     };
-  //     startLoading();
-  //     // Edit user
-  //     const data: any = {
-  //       firstName: this.firstName,
-  //       lastName: this.lastName,
-  //       email: this.email,
-  //       password: this.password,
-  //       birthDate: this.birthDate ? new Date(this.birthDate).getTime() : null,
-  //       role: this.role,
-  //       bio: this.bio
-  //     };
-  //     if (this.avatar) {
-  //       data.avatar = this.avatar;
-  //     }
-  //     this.users.edit(this.id, data, {
-  //       email: this.userData.email,
-  //       password: this.userData.password
-  //     }).then(() => {
-  //       this.userData = { ...this.userData, ...data }; // override old user data
-  //       // this.alert.success(this.i18n.get('UserUpdated'), false, 5000);
-  //     }).catch((error: Error) => {
-  //       this.alert.error(error.message);
-  //     }).finally(() => {
-  //       stopLoading();
-  //     });
-  //   }
-  // }
-  dismiss() {
-    this.modalController.dismiss();
+  onAvatarChange(event: Event) {
+    this.avatar = (event.target as HTMLInputElement).files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.avatarSrc = reader.result;
+    };
+    reader.readAsDataURL(this.avatar);
+  }
+  updateUser(event: Event, form: HTMLFormElement) {
+    form.isSubmitted = true;
+    if (form.checkValidity()) {
+      const data: any = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+        password: this.password,
+        birthDate: this.birthDate ? new Date(this.birthDate).getTime() : null,
+        role: this.role,
+        bio: this.bio
+      };
+      if (this.avatar) {
+        data.avatar = this.avatar;
+      }
+      this.users.edit(this.id.userId, data, {
+        email: this.userData.email,
+        password: this.userData.password
+      }).then(() => {
+        this.userData = { ...this.userData, ...data };
+      }).catch((error: Error) => {
+        console.error(error);
+      }).finally(() => {
+        // console.log('finally');
+      });
+    }
   }
   navigateBack() {
-    // this.navigation.getRouterLink('tabs/profile');
-    this.router.navigateByUrl('tabs/profile');
+    return this.router.navigateByUrl('tabs/profile');
   }
 }

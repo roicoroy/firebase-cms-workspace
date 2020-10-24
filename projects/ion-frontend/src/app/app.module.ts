@@ -13,13 +13,17 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FirebaseOptions, FirebaseOptionsToken } from 'angularfire2';
+// import { TabsComponent } from './shared/components/tabs/tabs.component';
 // import { IonFireAdminService } from './fire-admin.service';
 // import { NgxMasonryModule } from './shared/ngx-masonry/src/public-api';
 
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+  ],
+  entryComponents: [
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -35,7 +39,9 @@ import { FirebaseOptions, FirebaseOptionsToken } from 'angularfire2';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
 

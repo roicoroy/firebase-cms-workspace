@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+// import { TabsComponent } from 'src/app/shared/components/tabs/tabs.component';
+// import { CustomComponentsModule } from 'src/app/shared/components/components.module';
 
 
 @NgModule({
@@ -12,11 +14,15 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    // CustomComponentsModule
   ],
-  schemas:[
+  declarations: [
+    HomePage,
+  ],
+  entryComponents: [
+  ],
+  schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  declarations: [HomePage]
 })
-export class HomePageModule {}
+export class HomePageModule { }

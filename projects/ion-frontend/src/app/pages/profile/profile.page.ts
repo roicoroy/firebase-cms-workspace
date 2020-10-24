@@ -13,7 +13,6 @@ import { PostsService } from 'src/app/shared/services/collections/posts.service'
 import { UsersService } from 'src/app/shared/services/collections/users.service';
 import { CurrentUserService } from 'src/app/shared/services/current-user.service';
 import { NavigationService } from 'src/app/shared/services/navigation.service';
-import { EditModalComponent } from './edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-profile',
@@ -48,21 +47,8 @@ export class ProfilePage implements OnInit, OnDestroy {
   ) { }
   navigateToEdit(userId) {
     this.router.navigate(['tabs/edit'], {
-      queryParams: {
-        "userId":userId,
-      }
-    })
-    console.log('nagigate to edit', this.user?.id)
-  }
-  async openEditModal(userId) {
-    console.log(userId);
-    const modal = await this.modalController.create({
-      component: EditModalComponent,
-      componentProps: {
-        'userId': userId,
-      }
+      queryParams: { "userId": userId }
     });
-    return await modal.present();
   }
   ionViewWillEnter() {
     this.allRoles = this.users.getAllRoles();
@@ -80,7 +66,7 @@ export class ProfilePage implements OnInit, OnDestroy {
         this.allPostsCategories = categories;
       })
     );
-    // Get user data
+    
     this.userID = this.currentUser.data?.id;
     this.subscription.add(
       this.users.get(this.userID).pipe(
@@ -94,13 +80,11 @@ export class ProfilePage implements OnInit, OnDestroy {
         if (user) {
           this.user = user;
           this.user.id = this.userID;
-          // Get statistics
-          // this.getStatistics();
-          // // Get latest posts
-          // this.getLatestPosts();
+          this.getStatistics();
+          this.getLatestPosts();
         }
         else {
-          this.navigation.redirectTo('users', 'list');
+          console.error('no user...');
         }
       })
     );
@@ -117,9 +101,9 @@ export class ProfilePage implements OnInit, OnDestroy {
       let query: any = ref;
       query = query.where('createdBy', '==', this.user.id);
       // Filter by lang
-      if (this.postsLanguage !== '*') {
-        query = query.where('lang', '==', this.postsLanguage);
-      }
+      // if (this.postsLanguage !== '*') {
+      //   query = query.where('lang', '==', this.postsLanguage);
+      // }
       // orderBy & limit requires a database index to work with the where condition above
       // as a workaround, they were replaced with client side sort/slice functions below
       // query = query.orderBy('createdAt', 'desc');
@@ -130,7 +114,7 @@ export class ProfilePage implements OnInit, OnDestroy {
         map((posts: Post[]) => {
           return posts.sort((a: Post, b: Post) => b.createdAt - a.createdAt).slice(0, 5);
         }),
-        takeUntil(this.postsLanguageChange)
+        takeUntil(this.postsLanguageChange),
       );
   }
   onPostsLanguageChange() {
@@ -147,7 +131,7 @@ export class ProfilePage implements OnInit, OnDestroy {
     }
   }
   canEditProfile() {
-    return true;
-    // return !this.currentUser.isGuest();
+    // return true;
+    return !this.currentUser.isGuest();
   }
 }
