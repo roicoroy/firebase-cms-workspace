@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -12,11 +12,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { FirebaseOptions, FirebaseOptionsToken } from 'angularfire2';
-// import { TabsComponent } from './shared/components/tabs/tabs.component';
-// import { IonFireAdminService } from './fire-admin.service';
-// import { NgxMasonryModule } from './shared/ngx-masonry/src/public-api';
-
 
 @NgModule({
   declarations: [
@@ -34,7 +29,6 @@ import { FirebaseOptions, FirebaseOptionsToken } from 'angularfire2';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    // NgxMasonryModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

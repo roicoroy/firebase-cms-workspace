@@ -11,9 +11,8 @@ import { CategoriesService } from 'src/app/shared/services/collections/categorie
 import { PostsService } from 'src/app/shared/services/collections/posts.service';
 import { CurrentUserService } from 'src/app/shared/services/current-user.service';
 import { NavigationService } from 'src/app/shared/services/navigation.service';
-// import { SettingsService } from 'src/app/shared/services/settings.service';
-
 declare var $: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -40,13 +39,10 @@ export class HomePage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public navigation: NavigationService,
     public currentUser: CurrentUserService,
-    // private settings: SettingsService
   ) { }
 
   ngOnInit() {
-    // Get all status
     this.allStatus = this.posts.getAllStatusWithColors();
-    // Get all categories
     this.subscription.add(
       this.categories.getAll().pipe(map((categories: Category[]) => {
         const allCategories: Category[] = [];
@@ -55,15 +51,9 @@ export class HomePage implements OnInit, OnDestroy {
         });
         return allCategories;
       })).subscribe((categories: Category[]) => {
-        // console.log(categories);
         this.allCategories = categories;
       })
     );
-    // Get all languages
-    // this.settings.supportedLanguages.forEach((language: Language) => {
-    //   this.allLanguages[language.key] = language;
-    // });
-    // Get route params
     this.subscription.add(
       this.route.params.subscribe((params: { status: string, categoryId: string, authorId: string }) => {
         this.routeParamsChange.next();
@@ -93,7 +83,6 @@ export class HomePage implements OnInit, OnDestroy {
         );
         this.subscription.add(
           this.allPosts.subscribe((posts: any[]) => {
-            // console.log(posts);
             this.isLoading = false;
           })
         );
