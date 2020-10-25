@@ -27,14 +27,15 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.routeSubscription = this.route.queryParams.subscribe((params: any) => {
-      if (params.email) {
-        this.email = params.email;
-      }
-      if (params.password) {
-        this.password = params.password;
-      }
-    });
+    this.routeSubscription = this.route.queryParams
+      .subscribe((params: any) => {
+        if (params.email) {
+          this.email = params.email;
+        }
+        if (params.password) {
+          this.password = params.password;
+        }
+      });
   }
   ngOnDestroy() {
     if (this.routeSubscription) {
@@ -42,11 +43,13 @@ export class LoginPage implements OnInit {
     }
   }
   onSubmit() {
-    this.auth.signIn(this.email, this.password, this.rememberMe).then(() => {
-      this.navigation.redirectTo('tabs/home');
-    }).catch((error: Error) => {
-      this.error = error.message;
-    });
+    this.auth.signIn(this.email, this.password, this.rememberMe)
+      .then(() => {
+        this.navigation.redirectTo('home');
+      })
+      .catch((error: Error) => {
+        this.error = error.message;
+      });
   }
   goRegister() {
     this.router.navigateByUrl('register');
