@@ -41,7 +41,8 @@ export class RegisterPage implements OnInit {
         birthDate: null,
         bio: null
       }).then(() => {
-        this.navigation.redirectTo(`login?email=${this.email}&password=${this.password}`);
+        this.router.navigate(['login'], { queryParams: { email: this.email, password: this.password } });
+        // this.navigation.redirectTo(`login?email=${this.email}&password=${this.password}`);
       }).catch((error: Error) => {
         console.error(error);
       }).finally(() => {
